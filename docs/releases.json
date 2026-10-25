@@ -1,1 +1,20 @@
-{"releases":[{"version":"0.1.0","status":"source_package_candidate","source_commit":null,"account_plugin_id":null,"local_client_installation":"not_tested","native_voice":"not_tested","drive_save":"not_tested","automatic_client_refresh":"not_tested","change_request":"CR-0001"}]}
+{
+  "releases": [
+    {
+      "version": "0.1.0",
+      "status": "source_package_candidate",
+      "source_commit": "e59fcfdfb6dabe293e1916a91e9bae6e832064c3",
+      "account_plugin_id": null,
+      "local_client_installation": "not_tested",
+      "native_voice": "not_tested",
+      "drive_save": "not_tested",
+      "automatic_client_refresh": "not_tested_in_real_client",
+      "change_request": "CR-0001",
+      "preview_tag": "emma-v0.1.0",
+      "package_sha256": "a7749a092c43dca96d5e9d69355152dff16e7b53f5f0a25cbc4a2d0a551a4563",
+      "local_tests": 10,
+      "skill_validation": "passed",
+      "package_validation": "passed"
+    }
+  ]
+}

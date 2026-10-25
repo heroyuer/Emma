@@ -10,3 +10,5 @@
 - CR-0001 revision2: pause-aware same-day session ledger,25/30min semantics,new-local-day rollover and revisioned partial checkpoints; updater review fixes and durable resume checklist. All remain preview/source features pending actual host tests.
 
 - CR-0001 revision3: durable pushed-source checkpoint and validated session/archive revision metadata; preview package identity is separate from native-host acceptance.
+
+- CR-0001 revision4 source-only audit: verified pushed preview source/tag/package hash; actual client installation/Voice/Drive gates remain open.
