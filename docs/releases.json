@@ -54,13 +54,26 @@
     {
       "version": "0.1.2",
       "status": "source_package_candidate",
-      "source_commit": null,
+      "source_commit": "9205b3c91d04609351d89299f95fa9aefac88fa4",
       "change_request": "CR-0001",
       "local_tests": 15,
-      "scheduler_test": "pending_actual_task",
+      "scheduler_test": {
+        "status": "actual_task_succeeded",
+        "last_task_result": 0,
+        "task_name": "Emma approved updates",
+        "result": "no_approved_release",
+        "checked_at": "2026-10-25T21:41:59.059Z",
+        "updater_version": "0.1.2",
+        "schedule": "daily noon and current-user logon; StartWhenAvailable",
+        "working_directory_set": true,
+        "current_user_limited_interactive": true
+      },
       "toolchain_environment": "empty PATH and failed-launch diagnostics tested",
       "native_voice": "not_tested",
-      "stable_promotion": false
+      "stable_promotion": false,
+      "preview_tag": "emma-v0.1.2",
+      "package_sha256": "72d64071880f5a2c57403373391035754014edf5af1037b2987a51d758509d5a",
+      "local_client_installation": "same Emma identity installed/enabled0.1.2 verified by CLI readback"
     }
   ]
 }

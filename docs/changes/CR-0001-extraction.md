@@ -1,6 +1,6 @@
 # CR-0001 — Independent Emma extraction and automatic local updates
 
-Document revision: 10
+Document revision: 11
 Status: implemented_host_validation_pending
 Opened: 2026-10-25
 Target release: 0.1.0 preview package; no verified cloud or learner rollout
@@ -59,3 +59,5 @@ Parent explicitly requested latest activation. Actual updater activated preview0
 Naming/routing diagnosis: latest parent chat retrieved the old Site plugin through prior context and Plugin Creator instead of loading the independent local skill. Actual installed cache still0.1.0 despite active source0.1.1. Used supported CLI plugin add for the SAME emma@personal-emma identity; plugin list verified installed/enabled0.1.1 and cache skill readback matched. No cache hand-edit, old-plugin removal or app restart. New explicit local Emma selection/routing remains to test. Future updater must distinguish source activation from installed-cache refresh; restart-only guidance was insufficient in this observed case.
 
 0.1.2 scheduler fix: actual task failed because bundled Git was absent from scheduler PATH. Capture/validate absolute per-machine Node/Git/tar paths outside Git; use derived tool directories, deterministic working directory and safe persisted results. Same parent task must be re-registered and actual scheduled exit0 verified. No credentials, child tasks or stable promotion.
+
+0.1.2 actual scheduler acceptance: source artifact9205b3c91d04609351d89299f95fa9aefac88fa4/preview tag pushed,15 tests passed including empty-PATH real Git staging and safe failure-status persistence. Parent preview activated between sessions with config hash unchanged, same plugin identity cache read back0.1.2. Existing task re-registered (no duplicate) with validated local tools and working directory; actual run at2026-10-25T21:41:59.059Z returned LastTaskResult0 and persisted no_approved_release/updater0.1.2. Limited Interactive/current-user daily noon+logon/StartWhenAvailable preserved. No child tasks, reminders, importer schedule or stable promotion. This validates the scheduled checker; real native Voice and future installed-cache refresh after automatic activation remain separate open acceptance.

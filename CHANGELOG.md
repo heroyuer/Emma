@@ -28,3 +28,5 @@
 ## 0.1.2 — preview candidate, 2026-10-25
 
 - CR-0001 revision10: scheduler tool-path fix through validated per-user executable paths, fixed working directory and safe persisted diagnostics. Actual scheduled test pending.
+
+- CR-0001 revision11 source-only audit: actual parent Windows task LastTaskResult0, safe no_approved_release status, same-identity installed0.1.2 and unchanged settings verified. Checker schedule noon/logon with missed-run catch-up; no stable promotion.
