@@ -50,6 +50,17 @@
         "refresh_method": "codex plugin add emma@personal-emma --json; plugin list readback",
         "fresh_chat_routing": "pending explicit Emma selection"
       }
+    },
+    {
+      "version": "0.1.2",
+      "status": "source_package_candidate",
+      "source_commit": null,
+      "change_request": "CR-0001",
+      "local_tests": 15,
+      "scheduler_test": "pending_actual_task",
+      "toolchain_environment": "empty PATH and failed-launch diagnostics tested",
+      "native_voice": "not_tested",
+      "stable_promotion": false
     }
   ]
 }

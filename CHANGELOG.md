@@ -24,3 +24,7 @@
 - CR-0001 revision8 source-only audit: user-requested parent preview0.1.1 activation verified, config/marketplace preserved and0.1.0 retained for rollback; client restart/loaded-version acceptance still pending.
 
 - CR-0001 revision9 source-only audit: diagnose old-plugin memory routing and stale local cache; supported same-plugin CLI refresh/readback confirms Emma installed/enabled0.1.1. New-chat routing remains pending; no old plugin removed.
+
+## 0.1.2 — preview candidate, 2026-10-25
+
+- CR-0001 revision10: scheduler tool-path fix through validated per-user executable paths, fixed working directory and safe persisted diagnostics. Actual scheduled test pending.

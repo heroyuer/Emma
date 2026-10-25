@@ -6,12 +6,12 @@ export function runCommand(command,{root=path.join(os.homedir(),'.emma')}={}){
  const dir=path.join(runtime,'sessions');fs.mkdirSync(dir,{recursive:true});const file=path.join(dir,config.learner_id+'.json'),lock=file+'.lock';let fd;
  try{fd=fs.openSync(lock,'wx');const previous=fs.existsSync(file)?JSON.parse(fs.readFileSync(file)):null;
   const name=config.learner_first_name||command.learner_first_name;if(!name)throw Error('Ask the preferred first name once, then pass it to startup');
-  const result=transition(previous,command.action,{...command,learner_id:config.learner_id,actor_kind:config.actor_kind,learner_first_name:name,timezone:config.timezone||'America/Chicago',plugin_version:'0.1.1'});
+  const result=transition(previous,command.action,{...command,learner_id:config.learner_id,actor_kind:config.actor_kind,learner_first_name:name,timezone:config.timezone||'America/Chicago',plugin_version:'0.1.2'});
   fs.writeFileSync(file+'.tmp',JSON.stringify(result.state,null,2));fs.renameSync(file+'.tmp',file);
   if(!config.learner_first_name){config.learner_first_name=name;fs.writeFileSync(configPath+'.tmp',JSON.stringify(config,null,2));fs.renameSync(configPath+'.tmp',configPath);}
   const pending=fs.readdirSync(dir).filter(f=>f.endsWith('.json')).map(f=>JSON.parse(fs.readFileSync(path.join(dir,f))).current).filter(s=>s&&s.status!=='closed').map(s=>({session_id:s.session_id,plugin_version:s.plugin_version,status:s.status}));
   const marker=path.join(runtime,'lesson-active.json');if(pending.length)fs.writeFileSync(marker,JSON.stringify({sessions:pending}));else if(fs.existsSync(marker))fs.unlinkSync(marker);
-  return{...result,state:undefined,ledger_path:file,loaded_plugin_version:'0.1.1',pinned_plugin_version:result.session?.plugin_version,version_mismatch:result.session?.plugin_version!=='0.1.1'};
+  return{...result,state:undefined,ledger_path:file,loaded_plugin_version:'0.1.2',pinned_plugin_version:result.session?.plugin_version,version_mismatch:result.session?.plugin_version!=='0.1.2'};
  }finally{if(fd!==undefined){fs.closeSync(fd);fs.unlinkSync(lock);}}
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){

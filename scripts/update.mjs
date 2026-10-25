@@ -1,2 +1,4 @@
-import {update} from './client.mjs';
-try{const args=process.argv.slice(2),value=x=>{const i=args.indexOf(x);return i<0?undefined:args[i+1];};console.log(JSON.stringify(update({root:value('--root'),preview:args.includes('--preview'),betweenSessions:args.includes('--between-sessions')})));}catch(e){console.error(JSON.stringify({status:'update_failed',message:e.message}));process.exitCode=1;}
+import path from 'node:path';import os from 'node:os';import {update,atomic} from './client.mjs';
+const args=process.argv.slice(2),value=x=>{const i=args.indexOf(x);return i<0?undefined:args[i+1];},root=path.resolve(value('--root')||path.join(os.homedir(),'.emma'));
+let result;try{result=update({root,preview:args.includes('--preview'),betweenSessions:args.includes('--between-sessions')});}catch(e){result={status:'update_failed',error_code:e.code||'update_error',tool:e.tool||null,tool_exit_code:e.exit_code??null,message:'Check per-user toolchain and GitHub sign-in. Existing settings and installed package retained.'};process.exitCode=1;}
+result={...result,checked_at:new Date().toISOString(),updater_version:'0.1.2'};try{atomic(path.join(root,'update-status.json'),result);}catch{process.exitCode=1;result={...result,status:'status_write_failed'};}console.log(JSON.stringify(result));
