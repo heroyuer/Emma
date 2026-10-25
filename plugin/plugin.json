@@ -1,11 +1,18 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "emma",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Emma helps teenage beginners explore school questions and interests in English, with per-account Google Drive lesson archives where supported.",
-  "author": {"name": "Emma project"},
+  "author": {
+    "name": "Emma project"
+  },
   "repository": "https://github.com/heroyuer/Emma",
-  "keywords": ["Hi Emma", "Start English learning today", "Start today", "English today"],
+  "keywords": [
+    "Hi Emma",
+    "Start English learning today",
+    "Start today",
+    "English today"
+  ],
   "extensions": {
     "com.openai": {
       "apps": "./.app.json",

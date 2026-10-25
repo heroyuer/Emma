@@ -26,6 +26,17 @@
         "drive_destination": "not_configured",
         "schedules_created": 0
       }
+    },
+    {
+      "version": "0.1.1",
+      "status": "source_package_candidate",
+      "source_commit": null,
+      "change_request": "CR-0001",
+      "local_tests": 13,
+      "interoperability": "canonical receipt and legacy revalidation passed with actual modules/synthetic data",
+      "local_client_installation": "pending",
+      "native_voice": "not_tested",
+      "drive_save": "new writer pending live test"
     }
   ]
 }

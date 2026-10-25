@@ -25,10 +25,20 @@ export function prepareArchive(input){
  const pre=`# Emma lesson — ${input.learner_first_name}\n\nSession: ${input.session_id}\nPlugin: ${input.plugin_version}; rules: ${input.rules_revision??'unknown'}\nCoverage: ${input.transcript_coverage}; prepared locally, not verified in Drive.\n`;
  return{stem,record,files:{[stem+'-transcript.md']:pre+'\n'+entries.map((e,i)=>`## ${i+1}. ${e.role}\n\n${e.text}`).join('\n\n')+'\n',[stem+'-summary.json']:JSON.stringify(record,null,2)+'\n',[stem+'-summary.md']:pre+'\n## Summary\n\n'+JSON.stringify(summary,null,2)+'\n\n## Metrics\n\n'+JSON.stringify(metrics,null,2)+'\n\nCounts describe captured text only, not speaking time, motivation or mastery.\n'}};
 }
+export function prepareCheckpoint(session,details={}){
+ if(!['active','paused','closed'].includes(session?.status)||!Number.isInteger(session.archive_revision)||session.archive_revision<1)throw Error('Pause/close the actual ledger before preparing a checkpoint');
+ return prepareArchive({...session,...details,schema_version:1,session_id:session.session_id,learner_id:session.learner_id,actor_kind:session.actor_kind,learner_first_name:session.learner_first_name,plugin_version:session.plugin_version,rules_revision:session.rules_revision,archive_revision:session.archive_revision,session_status:session.status,practice_seconds:session.practice_seconds??null,entries:session.entries,transcript_coverage:details.transcript_coverage||session.transcript_coverage||'unknown'});
+}
+export function writeArchive(archive,output){
+ const base=path.join(output,archive.stem),revision='r'+String(archive.record.archive_revision).padStart(6,'0'),dir=path.join(base,revision);
+ if(fs.existsSync(base))for(const prior of fs.readdirSync(base)){if(!/^r\d+$/.test(prior)||Number(prior.slice(1))>=archive.record.archive_revision)continue;const file=path.join(base,prior,archive.stem+'-summary.json');if(!fs.existsSync(file))continue;const old=JSON.parse(fs.readFileSync(file));if(old.entries.length>archive.record.entries.length||old.entries.some((e,i)=>JSON.stringify(e)!==JSON.stringify(archive.record.entries[i])))throw Error('Checkpoint must preserve the previous actual transcript prefix');}
+ fs.mkdirSync(dir,{recursive:true});
+ for(const [name,text] of Object.entries(archive.files)){const target=path.join(dir,name);if(fs.existsSync(target)&&fs.readFileSync(target,'utf8')!==text)throw Error('Conflicting same-revision artifact; original preserved');}
+ for(const [name,text] of Object.entries(archive.files)){const target=path.join(dir,name);if(!fs.existsSync(target))fs.writeFileSync(target,text,{flag:'wx'});}
+ return dir;
+}
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const [inputFile,output]=process.argv.slice(2);if(!inputFile||!output)throw Error('Usage: node archive.mjs session.json output-directory');
- const archive=prepareArchive(JSON.parse(fs.readFileSync(inputFile,'utf8')));fs.mkdirSync(output,{recursive:true});
- for(const [name,text] of Object.entries(archive.files)){const target=path.join(output,name);if(fs.existsSync(target)&&fs.readFileSync(target,'utf8')!==text)throw Error('Conflicting existing artifact; original preserved');}
- for(const [name,text] of Object.entries(archive.files))fs.writeFileSync(path.join(output,name),text);
- console.log(JSON.stringify({stem:archive.stem,files:Object.keys(archive.files),status:'prepared_not_uploaded'}));
+ const input=JSON.parse(fs.readFileSync(inputFile,'utf8')),archive=input.schema_version===1?prepareArchive(input):prepareCheckpoint(input,input),directory=writeArchive(archive,output);
+ console.log(JSON.stringify({stem:archive.stem,directory,files:Object.keys(archive.files),status:'prepared_not_uploaded'}));
 }

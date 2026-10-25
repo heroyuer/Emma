@@ -24,3 +24,7 @@ Known incomplete integration: skill must actually invoke ledger/Drive tools; bac
 ## Parent bootstrap completed after initial checkpoint
 
 Actual parent preview bootstrap ran successfully from immutable emma-v0.1.0. Files/standard Drive dependency/source receipt and personal-emma marketplace entry read back successfully. Runtime is parent_test, with unique local identity and no configured Drive destination; no real identity/IDs are committed. No schedules or app restart. Next user step: restart intended ChatGPT desktop client, find Emma in the Personal plugins/local source and install/refresh; verify0.1.0 in a fresh chat, then separately test native Voice. This local registration is not verified client installation or a cloud account-owned publication. Parent importer still needs Google Desktop OAuth credentials and consent.
+
+## 0.1.1 follow-up preview
+
+Fixes are source-tested: shared profile runtime instead of chat-local ledgers; explicit paused-ledger archive adapter and revision-specific local preparation; canonical hashed receipt generator; dashboard legacy receipt revalidation from newly fetched bytes/parents; stronger reading-to-discussion guidance. No old test records rewritten, no raw transcript committed. Actual cross-chat native host invocation and new upload acceptance still require a fresh test. Parent0.1.0 remains loaded until the preview update is staged/activated and client refresh occurs.

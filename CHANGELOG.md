@@ -14,3 +14,7 @@
 - CR-0001 revision4 source-only audit: verified pushed preview source/tag/package hash; actual client installation/Voice/Drive gates remain open.
 
 - CR-0001 revision5 source-only audit: actual parent preview bootstrap/files/marketplace verified with parent-test runtime separation; client restart/install, Voice and Drive remain pending. No schedule or stable promotion.
+
+## 0.1.1 — preview candidate, 2026-10-25
+
+- CR-0001 revision6: deterministic compatible receipts from authenticated readback bytes, shared per-profile runtime ledger with locks and update marker, and learner-led topic/reading discussion guidance. Real host/Drive acceptance pending.
