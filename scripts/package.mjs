@@ -1,0 +1,3 @@
+import fs from 'node:fs';import path from 'node:path';import {spawnSync} from 'node:child_process';
+for(const args of [['scripts/verify.mjs'],['--test',...fs.readdirSync('tests').filter(p=>p.endsWith('.test.mjs')).map(p=>'tests/'+p)]]){const r=spawnSync(process.execPath,args,{stdio:'inherit'});if(r.status!==0)process.exit(r.status||1);}
+fs.mkdirSync('dist',{recursive:true});const version=fs.readFileSync('VERSION','utf8').trim(),file=path.resolve('dist',`Emma-${version}.tar.gz`),r=spawnSync('tar',['-czf',file,'-C','plugin','.'],{stdio:'inherit'});if(r.status!==0)process.exit(r.status||1);console.log(file);

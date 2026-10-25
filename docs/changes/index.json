@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "id": "CR-0001",
+      "revision": 2,
+      "status": "implemented_host_validation_pending",
+      "path": "docs/changes/CR-0001-extraction.md"
+    }
+  ]
+}

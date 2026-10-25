@@ -1,0 +1,8 @@
+node_modules/
+dist/
+runtime/
+archives/
+.env*
+*.local.json
+*.log
+!config/runtime.example.json

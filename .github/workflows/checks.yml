@@ -1,0 +1,32 @@
+name: Emma package checks and approved release
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: node --test tests/*.test.mjs
+      - run: node scripts/package.mjs
+      - name: Publish only approved stable tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if node -e "const r=require('./release.json');process.exit(r.channel==='stable'&&r.status==='approved'&&r.native_voice_acceptance==='parent-tested'?0:1)"; then
+            VERSION=$(cat VERSION | tr -d '\r\n')
+            TAG="emma-v$VERSION"
+            if ! git ls-remote --exit-code origin "refs/tags/$TAG"; then
+              git config user.name github-actions
+              git config user.email github-actions@users.noreply.github.com
+              git tag -a "$TAG" -m "Approved Emma package $VERSION"
+              git push origin "$TAG"
+              gh release create "$TAG" "dist/Emma-$VERSION.tar.gz" --title "Emma $VERSION" --notes "Approved source package. Per-account installation, authentication and client refresh remain separate."
+            fi
+          fi

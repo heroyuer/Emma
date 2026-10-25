@@ -1,0 +1,25 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "emma",
+  "version": "0.1.0",
+  "description": "Emma helps teenage beginners explore school questions and interests in English, with per-account Google Drive lesson archives where supported.",
+  "author": {"name": "Emma project"},
+  "repository": "https://github.com/heroyuer/Emma",
+  "keywords": ["Hi Emma", "Start English learning today", "Start today", "English today"],
+  "extensions": {
+    "com.openai": {
+      "apps": "./.app.json",
+      "interface": {
+        "displayName": "Emma",
+        "shortDescription": "Curious English learning",
+        "longDescription": "A friendly AI coach for teenage English learners. Follow interests, repair school understanding, share short readings, and preserve available lesson text through the learner's own Google Drive connection. Native Voice capture and write-tool availability must be tested in each account.",
+        "developerName": "Emma project",
+        "category": "Education & Research",
+        "capabilities": [],
+        "defaultPrompt": "Hi Emma, start English learning today.",
+        "logo": "./assets/emma.png",
+        "composerIcon": "./assets/emma.png"
+      }
+    }
+  }
+}
