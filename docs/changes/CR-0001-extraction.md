@@ -1,6 +1,6 @@
 # CR-0001 — Independent Emma extraction and automatic local updates
 
-Document revision: 2
+Document revision: 3
 Status: implemented_host_validation_pending
 Opened: 2026-10-25
 Target release: 0.1.0 preview package; no verified cloud or learner rollout
@@ -43,3 +43,5 @@ See docs/installation.md, docs/updates.md and docs/architecture.md for capabilit
 Source: https://github.com/heroyuer/Emma. Package/release status is recorded independently in release.json and docs/releases.json. No shipped cloud release tag.
 
 Approved session follow-up: short requested stop before25min pauses, same-day start resumes accumulated time excluding pause gap; requested end at25min closes,30min next-turn wrap-up, explicit permanent earlier finish respected. New America/Chicago day seals prior partial work and starts a fresh ID. Ledger/checkpoint tests cover duplicate starts, exact-text retries, boundaries, pause gaps and active/paused rollover. Local host execution remains a prerequisite for ledger enforcement. Automatic updater review corrected registration-before-activation, downgrade prevention, malformed-tag fallback and bootstrap busy/staged reporting.
+
+Checkpoint follow-up: source is now pushed; archive revisions increment on pause/close, unknown timestamps stay explicit and session statuses validate. Ten client tests plus five dashboard tests passed locally. Preview tagging denotes source-package identity only. Native Voice/install/Drive acceptance remains pending.

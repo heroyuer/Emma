@@ -15,13 +15,13 @@ export function transition(previous,action,opts={}){
   const boundary=firstBoundary(s,now);if(s.status!=='closed'){s.practice_seconds=clock(s,boundary);s.accumulated_ms=s.practice_seconds*1000;s.active_since=null;s.status='closed';s.ended_at=boundary;s.close_reason='ended_day_boundary';s.transcript_coverage='partial';}state.history.push(s);state.current=null;s=null;
  }
  if(action==='start'){
-  if(!s||s.status==='closed'){s={session_id:crypto.randomUUID(),learner_id:opts.learner_id,learner_first_name:opts.learner_first_name,actor_kind:opts.actor_kind||'learner',plugin_version:opts.plugin_version||'0.1.0',rules_revision:opts.rules_revision??null,timezone:tz,local_date:localDay(now,tz),started_at:now,last_observed_at:now,active_since:now,accumulated_ms:0,status:'active',entries:[],transcript_coverage:'unknown'};if(state.current)state.history.push(state.current);state.current=s;}
+  if(!s||s.status==='closed'){s={session_id:crypto.randomUUID(),learner_id:opts.learner_id,learner_first_name:opts.learner_first_name,actor_kind:opts.actor_kind||'learner',plugin_version:opts.plugin_version||'0.1.0',rules_revision:opts.rules_revision??null,timezone:tz,local_date:localDay(now,tz),started_at:now,last_observed_at:now,active_since:now,accumulated_ms:0,status:'active',archive_revision:0,entries:[],transcript_coverage:'unknown'};if(state.current)state.history.push(state.current);state.current=s;}
   else if(s.status==='paused'){s.active_since=now;s.status='active';}
  }else{
   if(!s)throw Error('Start a session before recording or closing');
   if(action==='append'){if(s.status!=='active')throw Error('Resume before adding new words');if(!opts.entry||!['learner','coach'].includes(opts.entry.role)||typeof opts.entry.text!=='string'||!opts.entry.text.trim())throw Error('Actual labelled text required');s.entries.push({...opts.entry,event_id:id});}
   else if(action==='stop'||action==='pause'||action==='end'){
-   if(s.status!=='closed'){const elapsed=clock(s,now);s.accumulated_ms=elapsed*1000;s.active_since=null;s.practice_seconds=elapsed;const close=action==='end'||opts.permanent||action==='stop'&&elapsed>=25*60;s.status=close?'closed':'paused';s.close_reason=close?(elapsed<25*60?'explicit_early_close':'requested_wrap_up'):'pause_before_25_minutes';s.ended_at=close?now:null;s.paused_at=close?null:now;s.transcript_coverage='partial';}
+   if(s.status!=='closed'){s.archive_revision=(s.archive_revision||0)+1;const elapsed=clock(s,now);s.accumulated_ms=elapsed*1000;s.active_since=null;s.practice_seconds=elapsed;const close=action==='end'||opts.permanent||action==='stop'&&elapsed>=25*60;s.status=close?'closed':'paused';s.close_reason=close?(elapsed<25*60?'explicit_early_close':'requested_wrap_up'):'pause_before_25_minutes';s.ended_at=close?now:null;s.paused_at=close?null:now;s.transcript_coverage='partial';}
   }else if(action!=='context')throw Error('Unknown session action');
  }
  if(s)s.last_observed_at=now;state.seen[id]=signature;const elapsed=s?clock(s,now):0;
