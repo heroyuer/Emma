@@ -18,3 +18,5 @@
 ## 0.1.1 — preview candidate, 2026-10-25
 
 - CR-0001 revision6: deterministic compatible receipts from authenticated readback bytes, shared per-profile runtime ledger with locks and update marker, and learner-led topic/reading discussion guidance. Real host/Drive acceptance pending.
+
+- CR-0001 revision7 source-only audit:0.1.1 source/tag/package checked; parent updater staged the candidate and preserved active0.1.0 while client running. Real-host acceptance remains pending.

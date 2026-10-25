@@ -30,13 +30,21 @@
     {
       "version": "0.1.1",
       "status": "source_package_candidate",
-      "source_commit": null,
+      "source_commit": "26fcd567e719b67356c8cc9dd27e0103a5b46cc5",
       "change_request": "CR-0001",
       "local_tests": 13,
       "interoperability": "canonical receipt and legacy revalidation passed with actual modules/synthetic data",
       "local_client_installation": "pending",
       "native_voice": "not_tested",
-      "drive_save": "new writer pending live test"
+      "drive_save": "new writer pending live test",
+      "preview_tag": "emma-v0.1.1",
+      "package_sha256": "35389826667dcb2984e6f0fbdfdd1c088445469acfdb86f6730519a4de8e3c8c",
+      "parent_preview_bootstrap": {
+        "status": "staged_while_client_running",
+        "active_source_version": "0.1.0",
+        "candidate_version": "0.1.1",
+        "client_restart_performed": false
+      }
     }
   ]
 }
