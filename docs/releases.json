@@ -14,7 +14,18 @@
       "package_sha256": "a7749a092c43dca96d5e9d69355152dff16e7b53f5f0a25cbc4a2d0a551a4563",
       "local_tests": 10,
       "skill_validation": "passed",
-      "package_validation": "passed"
+      "package_validation": "passed",
+      "parent_preview_bootstrap": {
+        "status": "filesystem_and_marketplace_verified",
+        "version": "0.1.0",
+        "artifact_source_commit": "e59fcfdfb6dabe293e1916a91e9bae6e832064c3",
+        "marketplace": "personal-emma",
+        "parent_test_configured": true,
+        "client_install_refresh": "pending_user_restart_and_install",
+        "native_voice": "not_tested",
+        "drive_destination": "not_configured",
+        "schedules_created": 0
+      }
     }
   ]
 }

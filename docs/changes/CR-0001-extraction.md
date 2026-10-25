@@ -1,6 +1,6 @@
 # CR-0001 — Independent Emma extraction and automatic local updates
 
-Document revision: 4
+Document revision: 5
 Status: implemented_host_validation_pending
 Opened: 2026-10-25
 Target release: 0.1.0 preview package; no verified cloud or learner rollout
@@ -47,3 +47,5 @@ Approved session follow-up: short requested stop before25min pauses, same-day st
 Checkpoint follow-up: source is now pushed; archive revisions increment on pause/close, unknown timestamps stay explicit and session statuses validate. Ten client tests plus five dashboard tests passed locally. Preview tagging denotes source-package identity only. Native Voice/install/Drive acceptance remains pending.
 
 Source-only release audit: e59fcfdfb6dabe293e1916a91e9bae6e832064c3 and immutable preview tag emma-v0.1.0 identify validated package source; package hash is recorded in docs/releases.json. Both private repos pushed and remote main read back. This is not a cloud publication or actual client install.
+
+Parent local preview preparation: under existing authorization, ran bootstrap --preview on actual parent machine. Verified version0.1.0, exact tagged source, full skill and standard Drive dependency, resolving personal-emma marketplace entry. Runtime parent_test identity is outside Git; destination remains unconfigured. No existing marketplace was present; no other entries/settings were replaced. No app restart/process closing, native Voice test, actual client install confirmation or schedule. User restart and Plugins install/refresh are next. This source-only audit does not promote stable.

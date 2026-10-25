@@ -12,3 +12,5 @@
 - CR-0001 revision3: durable pushed-source checkpoint and validated session/archive revision metadata; preview package identity is separate from native-host acceptance.
 
 - CR-0001 revision4 source-only audit: verified pushed preview source/tag/package hash; actual client installation/Voice/Drive gates remain open.
+
+- CR-0001 revision5 source-only audit: actual parent preview bootstrap/files/marketplace verified with parent-test runtime separation; client restart/install, Voice and Drive remain pending. No schedule or stable promotion.

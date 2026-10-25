@@ -20,3 +20,7 @@
 8. Archive ORIGINAL GitHub repo only after full split/migration gates are met or remaining limitations are explicitly accepted. Do not shut down Site, delete records/local checkouts or archive chats.
 
 Known incomplete integration: skill must actually invoke ledger/Drive tools; backend-free instructions cannot enforce missing native Voice/execution capabilities. Dashboard is a local source preview, not connected family monitoring. Archive receipt generation/upload requires actual tool readbacks. No stable auto-update release exists yet.
+
+## Parent bootstrap completed after initial checkpoint
+
+Actual parent preview bootstrap ran successfully from immutable emma-v0.1.0. Files/standard Drive dependency/source receipt and personal-emma marketplace entry read back successfully. Runtime is parent_test, with unique local identity and no configured Drive destination; no real identity/IDs are committed. No schedules or app restart. Next user step: restart intended ChatGPT desktop client, find Emma in the Personal plugins/local source and install/refresh; verify0.1.0 in a fresh chat, then separately test native Voice. This local registration is not verified client installation or a cloud account-owned publication. Parent importer still needs Google Desktop OAuth credentials and consent.
