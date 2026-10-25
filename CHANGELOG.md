@@ -20,3 +20,5 @@
 - CR-0001 revision6: deterministic compatible receipts from authenticated readback bytes, shared per-profile runtime ledger with locks and update marker, and learner-led topic/reading discussion guidance. Real host/Drive acceptance pending.
 
 - CR-0001 revision7 source-only audit:0.1.1 source/tag/package checked; parent updater staged the candidate and preserved active0.1.0 while client running. Real-host acceptance remains pending.
+
+- CR-0001 revision8 source-only audit: user-requested parent preview0.1.1 activation verified, config/marketplace preserved and0.1.0 retained for rollback; client restart/loaded-version acceptance still pending.

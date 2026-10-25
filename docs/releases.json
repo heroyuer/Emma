@@ -40,9 +40,11 @@
       "preview_tag": "emma-v0.1.1",
       "package_sha256": "35389826667dcb2984e6f0fbdfdd1c088445469acfdb86f6730519a4de8e3c8c",
       "parent_preview_bootstrap": {
-        "status": "staged_while_client_running",
-        "active_source_version": "0.1.0",
-        "candidate_version": "0.1.1",
+        "status": "activated_restart_required",
+        "active_source_version": "0.1.1",
+        "rollback_version": "0.1.0",
+        "config_preserved": true,
+        "marketplace_preserved": true,
         "client_restart_performed": false
       }
     }

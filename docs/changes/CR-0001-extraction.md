@@ -1,6 +1,6 @@
 # CR-0001 — Independent Emma extraction and automatic local updates
 
-Document revision: 7
+Document revision: 8
 Status: implemented_host_validation_pending
 Opened: 2026-10-25
 Target release: 0.1.0 preview package; no verified cloud or learner rollout
@@ -53,3 +53,5 @@ Parent local preview preparation: under existing authorization, ran bootstrap --
 0.1.1 preview follow-up after parent test: replace hand-written receipts with deterministic exact-field/byte-hash generation; use one configured profile ledger across local chats; deepen learner contributions and short reading/application flow without quotas. No raw test transcript or private Drive IDs copied to Git. Actual native Voice and new live upload acceptance remain pending; original0.1.0 archives unchanged.
 
 0.1.1 source/package audit: artifact26fcd567e719b67356c8cc9dd27e0103a5b46cc5 and immutable preview tag pushed;13 client tests,6 dashboard tests,actual-module synthetic receipt roundtrip and skill/package validation passed. Forward review identified paused-status mapping/local revision conflicts; explicit adapter/revision directories now cover them. Actual parent updater fetched and staged0.1.1, deferring activation while client running; active source remains0.1.0. No app restart, old-record migration, schedules or stable promotion.
+
+Parent explicitly requested latest activation. Actual updater activated preview0.1.1 from tagged artifact26fcd567e719b67356c8cc9dd27e0103a5b46cc5 between sessions; verified current files, unchanged config hash/marketplace path and retained0.1.0 rollback. No app restart/cache edits or stable promotion. Client refresh/new-chat loaded-version and new live lesson acceptance remain pending.
