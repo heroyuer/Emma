@@ -1,6 +1,6 @@
 # CR-0001 — Independent Emma extraction and automatic local updates
 
-Document revision: 8
+Document revision: 9
 Status: implemented_host_validation_pending
 Opened: 2026-10-25
 Target release: 0.1.0 preview package; no verified cloud or learner rollout
@@ -55,3 +55,5 @@ Parent local preview preparation: under existing authorization, ran bootstrap --
 0.1.1 source/package audit: artifact26fcd567e719b67356c8cc9dd27e0103a5b46cc5 and immutable preview tag pushed;13 client tests,6 dashboard tests,actual-module synthetic receipt roundtrip and skill/package validation passed. Forward review identified paused-status mapping/local revision conflicts; explicit adapter/revision directories now cover them. Actual parent updater fetched and staged0.1.1, deferring activation while client running; active source remains0.1.0. No app restart, old-record migration, schedules or stable promotion.
 
 Parent explicitly requested latest activation. Actual updater activated preview0.1.1 from tagged artifact26fcd567e719b67356c8cc9dd27e0103a5b46cc5 between sessions; verified current files, unchanged config hash/marketplace path and retained0.1.0 rollback. No app restart/cache edits or stable promotion. Client refresh/new-chat loaded-version and new live lesson acceptance remain pending.
+
+Naming/routing diagnosis: latest parent chat retrieved the old Site plugin through prior context and Plugin Creator instead of loading the independent local skill. Actual installed cache still0.1.0 despite active source0.1.1. Used supported CLI plugin add for the SAME emma@personal-emma identity; plugin list verified installed/enabled0.1.1 and cache skill readback matched. No cache hand-edit, old-plugin removal or app restart. New explicit local Emma selection/routing remains to test. Future updater must distinguish source activation from installed-cache refresh; restart-only guidance was insufficient in this observed case.

@@ -34,7 +34,7 @@
       "change_request": "CR-0001",
       "local_tests": 13,
       "interoperability": "canonical receipt and legacy revalidation passed with actual modules/synthetic data",
-      "local_client_installation": "pending",
+      "local_client_installation": "supported CLI add/list verified installed and enabled0.1.1",
       "native_voice": "not_tested",
       "drive_save": "new writer pending live test",
       "preview_tag": "emma-v0.1.1",
@@ -45,7 +45,10 @@
         "rollback_version": "0.1.0",
         "config_preserved": true,
         "marketplace_preserved": true,
-        "client_restart_performed": false
+        "client_restart_performed": false,
+        "installed_cache_version": "0.1.1",
+        "refresh_method": "codex plugin add emma@personal-emma --json; plugin list readback",
+        "fresh_chat_routing": "pending explicit Emma selection"
       }
     }
   ]
