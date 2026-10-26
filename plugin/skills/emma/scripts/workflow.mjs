@@ -40,14 +40,18 @@ function workflowUnlocked(command,{root}){
   for(const [i,e] of (command.entries||[]).entries())runCommand({action:'append',event_id:command.event_id+'/entry/'+i,entry:e,now},{root});
   return{status:'tracked_turn',session_id:r.session.session_id,practice_seconds:r.practice_seconds,wrap_up_due:r.wrap_up_due,next:nextMove({learner_text:command.learner_text||command.entries?.filter(e=>e.role==='learner').at(-1)?.text||'',previous_move:command.previous_move})};
  }
- if(['stop','pause','end'].includes(command.action)){
+ if(['stop','pause','end','capture_final'].includes(command.action)){
   const s=ledger(root,c)?.current,submission=command._submission_path||path.join(root,'runtime/save-queue',s?.session_id||'untracked','submissions',hash(String(command.event_id||'missing')),'submission.json');
   if(!command.event_id)throw Error('Stable event_id required');
   if(!fs.existsSync(submission))write(submission,{kind:'closing_submission',job_id:hash(command.event_id),session_id:s?.session_id||null,save_state:'unbound_pending',submitted_at:now,actual_command:{...command,now}});refreshProtection(root);
   if(!s)return{status:'untracked_capture_pending',recorded_session_started:false,submission_path:submission,archive_verified:false,diagnostic:'Actual supplied payload retained. No prior tracked startup/clock; do not fabricate a historical lesson.'};
   const savedSubmission=read(submission);if(savedSubmission.job_path){const expected=path.resolve(root,'runtime/save-queue')+path.sep;if(!path.resolve(savedSubmission.job_path).startsWith(expected))throw Error('Invalid queued binding');const bound=read(savedSubmission.job_path);if(bound)return report(bound,savedSubmission.job_path);}const original=savedSubmission.actual_command;if(command._untracked_at_submission)return{status:'untracked_capture_pending',submission_path:submission,archive_verified:false,diagnostic:'No valid tracked session reference existed at submission; do not attach old content to a new lesson.'};if(!original.session_id||s.session_id!==original.session_id)return{status:'session_reference_mismatch',submission_path:submission,archive_verified:false,diagnostic:'Actual payload retained; not applied to a different session.'};const entryBase=original.final_entries?s.entries.length:0;
   if(original.final_entries){const prefix=s.entries;if(original.final_entries.length<prefix.length||prefix.some((e,i)=>e.role!==original.final_entries[i]?.role||e.text!==original.final_entries[i]?.text))return{status:'capture_conflict_pending',submission_path:submission,archive_verified:false,diagnostic:'Actual closing content retained separately; existing transcript unchanged.'};original.entries=original.final_entries.slice(prefix.length);}
-  try{for(const [i,e] of (original.entries||[]).entries())runCommand({action:'append',event_id:original.event_id+'/closing-entry/'+(entryBase+i),entry:e,now:original.now},{root});const r=runCommand({...original,now:original.now},{root}),result=queueSession(root,c,r.session,original);const bound=read(submission);bound.save_state='bound_to_job';bound.job_path=result.job_path;write(submission,bound);refreshProtection(root);return result;}
+  try{let r;if(['paused','closed'].includes(s.status)){
+   if(original.entries?.length)r=runCommand({action:'capture_tail',session_id:s.session_id,event_id:original.event_id+'/capture-tail',entries:original.entries,now:original.now},{root});else r={session:s};
+   if(original.action==='end'&&r.session.status==='paused')r=runCommand({...original,action:'end',entries:undefined,now:original.now},{root});
+  }else{for(const [i,e] of (original.entries||[]).entries())runCommand({action:'append',event_id:original.event_id+'/closing-entry/'+(entryBase+i),entry:e,now:original.now},{root});r=runCommand({...original,action:original.action==='capture_final'?'stop':original.action,now:original.now},{root});}
+  const result=queueSession(root,c,r.session,original);const bound=read(submission);bound.save_state='bound_to_job';bound.job_path=result.job_path;write(submission,bound);refreshProtection(root);return result;}
   catch{return{status:'close_pending',submission_path:submission,archive_verified:false,diagnostic:'Actual closing payload retained; retry the same event_id after inspecting the runtime error.'};}
  }
  if(['retry','prepare_receipt','confirm_receipt','status'].includes(command.action)){
@@ -69,7 +73,7 @@ function workflowUnlocked(command,{root}){
 }
 export function workflow(command,{root=path.join(os.homedir(),'.emma')}={}){
  root=path.resolve(root);const runtime=path.join(root,'runtime');let incoming=null,payloadHash=null,eventHash=null;
- if(['stop','pause','end'].includes(command.action)){
+ if(['stop','pause','end','capture_final'].includes(command.action)){
   if(!command.event_id)throw Error('Stable closing event_id required');
   const {now,...payload}=command;eventHash=hash(command.event_id);payloadHash=hash(canonical(payload));
   incoming=path.join(runtime,'save-queue','incoming',eventHash,payloadHash,'submission.json');

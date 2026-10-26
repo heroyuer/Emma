@@ -78,12 +78,25 @@
     {
       "version": "0.2.0",
       "status": "source_package_candidate",
-      "source_commit": null,
+      "source_commit": "e2fa606b9842f5af225f6b6d9c2e28c1a6d2f4d2",
       "change_request": "CR-0001",
       "local_tests": 33,
       "native_voice": "not_tested",
       "child_upgrade": "not_verified",
       "cloud_io": "host Drive tools required; controller performs no remote writes",
+      "stable_promotion": false,
+      "preview_tag": "emma-v0.2.0",
+      "local_client_installation": "parent same-identity installed/cache verified; followed by0.2.1 late-tail fix",
+      "resolved_by": "0.2.1"
+    },
+    {
+      "version": "0.2.1",
+      "status": "source_package_candidate",
+      "source_commit": null,
+      "change_request": "CR-0001",
+      "local_tests": 34,
+      "native_voice": "not_tested",
+      "child_upgrade": "pending",
       "stable_promotion": false
     }
   ]

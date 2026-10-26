@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "emma",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Emma helps teenage beginners explore school questions and interests in English, with per-account Google Drive lesson archives where supported.",
   "author": {
     "name": "Emma project"

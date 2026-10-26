@@ -35,3 +35,7 @@
 
 - CR-0001 revision12: startup/session diagnostics and truthful readiness; meaning-led topic advancement; durable close/save queue with session binding, locks, pending guards, exact retry content and verified receipt stage.
 - Preserve pause/same-day/new-day timing, queued artifacts/start versions, child settings and old archives. Same-plugin installed-cache refresh/exact-version upgrade and existing updater-task reconciliation are supported. Native Voice and real child account acceptance remain pending.
+
+## 0.2.1 — preview candidate, 2026-10-25
+
+- CR-0001 revision13: capture actual final handoff tails after pause/close without restarting clock or teaching, preserving prior artifacts/start version and advancing a same-session archive revision. Final child upgrade prompt targets0.2.1.

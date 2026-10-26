@@ -7,7 +7,7 @@ export function clock(s,now){return Math.floor((s.accumulated_ms+(s.status==='ac
 export function transition(previous,action,opts={}){
  const state=structuredClone(previous||{current:null,history:[],seen:{}}),now=new Date(opts.now||Date.now()).toISOString(),id=opts.event_id;
  if(!id||typeof id!=='string')throw Error('Stable command event_id required');
- const signature=JSON.stringify({action,entry:opts.entry||null,permanent:!!opts.permanent});
+ const signature=JSON.stringify({action,entry:opts.entry||null,permanent:!!opts.permanent,...(action==='capture_tail'?{entries:opts.entries||null}:{})});
  if(state.seen[id]){if(state.seen[id]!==signature)throw Error('Conflicting checkpoint retry');return{state,duplicate:true,session:state.current};}
  let s=state.current;const tz=s?.timezone||opts.timezone||'America/Chicago';if(tz!=='America/Chicago')throw Error('Configured learner timezone must be America/Chicago in v1');
  if(s&&milliseconds(now)<milliseconds(s.last_observed_at))throw Error('Clock moved backward; retain previous state');
@@ -21,6 +21,10 @@ export function transition(previous,action,opts={}){
  }else{
   if(!s)throw Error('Start a session before recording or closing');
   if(action==='append'){if(s.status!=='active')throw Error('Resume before adding new words');if(!opts.entry||!['learner','coach'].includes(opts.entry.role)||typeof opts.entry.text!=='string'||!opts.entry.text.trim())throw Error('Actual labelled text required');s.entries.push({...opts.entry,event_id:id});}
+  else if(action==='capture_tail'){
+   if(opts.session_id!==s.session_id||!['paused','closed'].includes(s.status)||!Array.isArray(opts.entries)||!opts.entries.length||opts.entries.some(e=>!['learner','coach'].includes(e.role)||typeof e.text!=='string'||!e.text.trim()))throw Error('Actual same-session closing tail required after pause/close');
+   s.entries.push(...opts.entries.map((e,i)=>({...e,event_id:id+'/'+i})));s.archive_revision=(s.archive_revision||0)+1;s.closing_capture_received_at=now;s.transcript_coverage='partial';
+  }
   else if(action==='stop'||action==='pause'||action==='end'){
    if(s.status!=='closed'){s.archive_revision=(s.archive_revision||0)+1;const elapsed=clock(s,now);s.accumulated_ms=elapsed*1000;s.active_since=null;s.practice_seconds=elapsed;const close=action==='end'||opts.permanent||action==='stop'&&elapsed>=25*60;s.status=close?'closed':'paused';s.close_reason=close?(elapsed<25*60?'explicit_early_close':'requested_wrap_up'):'pause_before_25_minutes';s.ended_at=close?now:null;s.paused_at=close?null:now;s.transcript_coverage='partial';}
   }else if(action!=='context')throw Error('Unknown session action');

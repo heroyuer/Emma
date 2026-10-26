@@ -40,3 +40,5 @@ Scheduler repair completed:0.1.2 artifact9205b3c91d04609351d89299f95fa9aefac88fa
 ## Approved0.2.0 enhancement
 
 Startup/turn/stop now use workflow.mjs. Closing payload is retained before serialized operations; exact session references, concurrent requests, conflict evidence, partial append retries, pending save/version guards and actual receipt readback are tested. Missing setup retains supplied closing words without inventing tracking. Native Voice/child acceptance remains pending. Exact child upgrade prompt/invocation is in docs/child-upgrade.md; no old child transcript copied or rewritten. Parent preview install/readback is recorded separately after publication.
+
+Final approved enhancement preview0.2.1 additionally handles late same-session closing transcript tails after pause/close without clock restart. Read docs/child-upgrade.md for exact pinned command; do not use old source-only activation as installation proof. Native Voice/actual child Drive acceptance remain pending. Original repo/data remain preserved.
