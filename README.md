@@ -1,6 +1,6 @@
 # Emma
 
-Independent coaching plugin source for teenage beginner English learners. **0.2.1 preview package; child-account installation, native Voice and Drive save are not yet verified.** No Sites server or old hosted-coach tools. The original project and its records remain preserved.
+Independent coaching plugin source for teenage beginner English learners. **0.2.2 preview package; child-account installation, native Voice and Drive save are not yet verified.** No Sites server or old hosted-coach tools. The original project and its records remain preserved.
 
 Emma follows school puzzles, hobbies and curiosity in approachable English, welcomes Chinese when stuck, gently recasts without echo drills, and uses short verified readings/videos or labelled original passages. “Hi Emma,” “Start English learning today,” “Start today” and “English today” are discovery cues, not guaranteed global Voice commands. The approved fictional anime portrait is included unchanged; it does not select a spoken voice.
 

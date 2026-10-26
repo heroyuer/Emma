@@ -39,3 +39,8 @@
 ## 0.2.1 — preview candidate, 2026-10-25
 
 - CR-0001 revision13: capture actual final handoff tails after pause/close without restarting clock or teaching, preserving prior artifacts/start version and advancing a same-session archive revision. Final child upgrade prompt targets0.2.1.
+
+## 0.2.2 - preview candidate, 2026-10-25
+
+- CR-0002: additive archive quality diagnostics, missing-summary flags, limited-capture ratio suppression, immutable summary-only revisions and explicit storage verification scope.
+- CR-0002: sanitized startup host evidence and advisory progression for next-activity requests, repeated echo prompts and unfinished thoughts. Native Voice and learner rollout remain unverified.

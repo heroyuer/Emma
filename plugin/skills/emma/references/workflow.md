@@ -1,4 +1,4 @@
-# Tracked workflow and save queue (0.2.0)
+# Tracked workflow and save queue (0.2.2)
 
 Use `node <installed-skill>/scripts/workflow.mjs command.json` through the available execution tool. The child's only spoken cue can remain Hi Emma; the agent supplies commands. Execution and native Voice delegation must actually be available. The controller does not call Google Drive or capture audio.
 
@@ -26,3 +26,11 @@ The controller records close time, prepares immutable local revisions and return
 If the host never delegates the stop or supplies the words, this controller cannot run or recover missing speech. Explain the limitation. A saved receipt proves submitted file consistency, not complete Voice capture or learning mastery. Do not label a child session parent_test unless the configured profile is intentionally a parent test.
 
 0.2.1 final handoff: use capture_final with the exact confirmed session_id and strictly prefix-extending final_entries for a later transcript tail after pause/close. It never resumes a stopped clock or teaching, preserves original practice/end timing and creates a higher archive revision. Already recorded full content is idempotent; a mismatched/old session remains pending separately.
+
+## Host evidence and archive quality
+
+At start, optional capability_report contains host_surface (native_voice/text/unknown), instruction_loaded (boolean from actually loading the skill), and transcript_delivery (both_speakers/learner_only/coach_only/unknown). These are sanitized host reports pinned in the session, not independent verification. Diagnostics exposes host evidence and current capture warnings. Absence stays unknown. Test actual Voice separately.
+
+Turn steering uses recent actual coach text to detect repeated echo prompts and requests content progression. Do not pre-log generated responses; supply only delivered text available on a later handoff. Preserve the exact existing prefix for capture_final; missing replies cannot be inserted into old immutable revisions by reconstruction.
+
+Closing jobs return quality independently of archive_verified. Missing/partial summaries and suspicious speaker gaps never discard or block preservation. Supply the required summary fields from actual evidence; explicitly mark unknown learning as unassessed. A retry reuses immutable prepared bytes, so do not claim it repairs an already prepared summary. Use amend_summary with the confirmed session_id, a fresh stable event_id and a nonempty evidence-based summary to create a higher revision for the same paused/closed session, even when no new words arrive. Supply no entries/final_entries. Original artifacts, transcript, clock and end time remain unchanged; retry that exact event after failure. Limited capture suppresses learner word-share ratios. Raw entry counts describe only supplied text.

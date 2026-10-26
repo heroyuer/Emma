@@ -1,9 +1,9 @@
 {
-  "version": "0.2.1",
+  "version": "0.2.2",
   "channel": "preview",
   "status": "package_candidate",
   "native_voice_acceptance": "not_tested",
   "learner_account_installation": "not_tested",
   "drive_archive_acceptance": "not_tested",
-  "change_request": "CR-0001"
+  "change_request": "CR-0002"
 }

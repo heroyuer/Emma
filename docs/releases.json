@@ -98,6 +98,19 @@
       "native_voice": "not_tested",
       "child_upgrade": "pending",
       "stable_promotion": false
+    },
+    {
+      "version": "0.2.2",
+      "status": "source_package_candidate",
+      "source_commit": null,
+      "change_request": "CR-0002",
+      "local_tests": 42,
+      "package_validation": "passed",
+      "native_voice": "not_tested",
+      "child_upgrade": "not_attempted",
+      "drive_save": "new quality metadata not live tested",
+      "stable_promotion": false,
+      "manual_acceptance": "docs/voice-acceptance.md"
     }
   ]
 }
