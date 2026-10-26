@@ -13,5 +13,15 @@ $action = New-ScheduledTaskAction -Execute $nodePath -WorkingDirectory $resolved
 $triggers = @((New-ScheduledTaskTrigger -Daily -At '12:00'), (New-ScheduledTaskTrigger -AtLogOn -User ([Security.Principal.WindowsIdentity]::GetCurrent().Name)))
 $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances IgnoreNew -ExecutionTimeLimit (New-TimeSpan -Minutes 10)
 $principal = New-ScheduledTaskPrincipal -UserId ([Security.Principal.WindowsIdentity]::GetCurrent().Name) -LogonType Interactive -RunLevel Limited
+$existing = Get-ScheduledTask -TaskName 'Emma approved updates' -ErrorAction SilentlyContinue
+if ($existing) {
+  $expectedSid = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+  $existingSid = $existing.Principal.UserId
+  if (-not $existingSid.StartsWith('S-1-')) { $existingSid = ([Security.Principal.NTAccount]::new($existingSid)).Translate([Security.Principal.SecurityIdentifier]).Value }
+  if ($existingSid -ne $expectedSid) { throw 'Existing task belongs to another account; no change made' }
+  $triggers = $existing.Triggers
+  $settings = $existing.Settings
+  $principal = $existing.Principal
+}
 Register-ScheduledTask -TaskName 'Emma approved updates' -Action $action -Trigger $triggers -Settings $settings -Principal $principal -Force | Out-Null
-Write-Output 'Registered for this Windows account: daily noon and sign-in; offline catch-up when available. Client refresh may require restart.'
+Write-Output 'Current-user update task reconciled; existing timing preserved. A new task defaults to noon/sign-in. Client fresh-chat/restart may be required.'

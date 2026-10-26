@@ -30,3 +30,8 @@
 - CR-0001 revision10: scheduler tool-path fix through validated per-user executable paths, fixed working directory and safe persisted diagnostics. Actual scheduled test pending.
 
 - CR-0001 revision11 source-only audit: actual parent Windows task LastTaskResult0, safe no_approved_release status, same-identity installed0.1.2 and unchanged settings verified. Checker schedule noon/logon with missed-run catch-up; no stable promotion.
+
+## 0.2.0 — preview candidate, 2026-10-25
+
+- CR-0001 revision12: startup/session diagnostics and truthful readiness; meaning-led topic advancement; durable close/save queue with session binding, locks, pending guards, exact retry content and verified receipt stage.
+- Preserve pause/same-day/new-day timing, queued artifacts/start versions, child settings and old archives. Same-plugin installed-cache refresh/exact-version upgrade and existing updater-task reconciliation are supported. Native Voice and real child account acceptance remain pending.

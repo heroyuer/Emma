@@ -23,3 +23,7 @@ Local upgrades mean local package activation/refresh, not cloud publishing. If t
 ### Scheduler environment repair (0.1.2)
 
 Setup captures validated absolute Node/Git/tar paths and optional host executables to ignored per-user runtime/toolchain.json. The scheduled updater reconstructs only required tool directories in its environment and uses a fixed working directory. It does not rely on the Codex shell PATH or copy credentials. Moving/removing bundled tools requires rerunning setup from a working shell; validation fails safely instead of silently using another source. Every check persists safe status/time/error code to update-status.json, including no_approved_release and failures. A successful manual run is not scheduler acceptance; require an actual task run and LastTaskResult0.
+
+### Supported full upgrade (0.2.0)
+
+Use scripts/upgrade.mjs --preview --version0.2.0 --between-sessions only between sessions. The workflow save guard blocks activation while any lesson or unresolved save is protected. After activation/current-version checks, the upgrader invokes the supported same-selector codex plugin add command, checks manifest/Drive dependency and exact installed skill, and reports cache_refresh separately. No --force or invented refresh command. The scheduled checker uses this same refresh step for approved releases. Existing same-user task timing/settings are preserved when reconciling setup. Current preview tags are not stable approval.

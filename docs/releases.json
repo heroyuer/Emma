@@ -74,6 +74,17 @@
       "preview_tag": "emma-v0.1.2",
       "package_sha256": "72d64071880f5a2c57403373391035754014edf5af1037b2987a51d758509d5a",
       "local_client_installation": "same Emma identity installed/enabled0.1.2 verified by CLI readback"
+    },
+    {
+      "version": "0.2.0",
+      "status": "source_package_candidate",
+      "source_commit": null,
+      "change_request": "CR-0001",
+      "local_tests": 33,
+      "native_voice": "not_tested",
+      "child_upgrade": "not_verified",
+      "cloud_io": "host Drive tools required; controller performs no remote writes",
+      "stable_promotion": false
     }
   ]
 }
