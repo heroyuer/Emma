@@ -111,6 +111,20 @@
       "drive_save": "new quality metadata not live tested",
       "stable_promotion": false,
       "manual_acceptance": "docs/voice-acceptance.md"
+    },
+    {
+      "version": "0.2.3",
+      "status": "source_package_candidate",
+      "source_commit": null,
+      "change_request": "CR-0003",
+      "local_tests": 45,
+      "package_validation": "passed",
+      "child_update_script": "tested with synthetic per-account installation and PowerShell",
+      "native_voice": "real session pending",
+      "child_upgrade": "not_attempted",
+      "stable_promotion": false,
+      "preview_tag": "emma-v0.2.3",
+      "update_guide": "docs/UPDATE_EMMA.md"
     }
   ]
 }

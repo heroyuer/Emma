@@ -44,3 +44,7 @@
 
 - CR-0002: additive archive quality diagnostics, missing-summary flags, limited-capture ratio suppression, immutable summary-only revisions and explicit storage verification scope.
 - CR-0002: sanitized startup host evidence and advisory progression for next-activity requests, repeated echo prompts and unfinished thoughts. Native Voice and learner rollout remain unverified.
+
+## 0.2.3 - preview candidate, 2026-10-26
+
+- CR-0003: generate child-facing update commands from release metadata and reject stale instructions; derive updater status version from package source. Add a child-run update wrapper that verifies the actual installed version and preserves active/pending lessons.

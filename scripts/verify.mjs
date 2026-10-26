@@ -1,3 +1,4 @@
+import {childGuide} from './sync-update-guide.mjs';
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';
 const j=p=>JSON.parse(fs.readFileSync(p,'utf8')),version=fs.readFileSync('VERSION','utf8').trim(),manifest=j('plugin/plugin.json');
 assert.equal(manifest.version,version);assert.equal(j('package.json').version,version);assert.equal(j('release.json').version,version);assert.equal(manifest.name,'emma');
@@ -7,4 +8,5 @@ for(const p of ['logo','composerIcon'])assert.ok(fs.existsSync(path.join('plugin
 const walk=p=>fs.readdirSync(p,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(p,e.name)):[path.join(p,e.name)]);
 for(const p of walk('plugin')){assert.ok(!fs.lstatSync(p).isSymbolicLink());if(!p.endsWith('.png'))assert.doesNotMatch(fs.readFileSync(p,'utf8'),/asdk_app_sites_|family-english-coach\.chalkydog12|mcp__.*z_english_coach/);}
 const cr=j('docs/changes/index.json').changes[0];assert.ok(fs.readFileSync(cr.path,'utf8').includes('Document revision: '+cr.revision));assert.ok(fs.readFileSync('CHANGELOG.md','utf8').includes(cr.id));
+assert.equal(fs.readFileSync('docs/UPDATE_EMMA.md','utf8').replace(/\r\n/g,'\n'),childGuide(version,j('release.json').channel),'Run scripts/sync-update-guide.mjs after every version update');
 console.log(JSON.stringify({version,status:'package_checks_passed',host_installation:'not_proven_by_validation'}));
