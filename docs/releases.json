@@ -125,6 +125,19 @@
       "stable_promotion": false,
       "preview_tag": "emma-v0.2.3",
       "update_guide": "docs/UPDATE_EMMA.md"
+    },
+    {
+      "version": "0.2.4",
+      "status": "source_package_candidate",
+      "source_commit": null,
+      "change_request": "CR-0004",
+      "local_tests": 47,
+      "package_validation": "passed",
+      "native_voice": "not_tested",
+      "child_upgrade": "not_attempted",
+      "stable_promotion": false,
+      "preview_tag": "emma-v0.2.4",
+      "update_guide": "docs/UPDATE_EMMA.md"
     }
   ]
 }

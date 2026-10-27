@@ -48,3 +48,7 @@
 ## 0.2.3 - preview candidate, 2026-10-26
 
 - CR-0003: generate child-facing update commands from release metadata and reject stale instructions; derive updater status version from package source. Add a child-run update wrapper that verifies the actual installed version and preserves active/pending lessons.
+
+## 0.2.4 - preview candidate, 2026-10-26
+
+- CR-0004: universal version-free upgrade prompt, optional exact-version wrapper, explicit preview/stable scheduled channels with readback and channel preservation. Reuse configured Node path and wait for toolchain validation.

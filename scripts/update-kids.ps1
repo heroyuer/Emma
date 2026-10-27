@@ -1,6 +1,5 @@
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory=$true)]
     [ValidatePattern('^\d+\.\d+\.\d+$')]
     [string]$Version,
     [switch]$Preview,
@@ -23,7 +22,8 @@ $emmaNode = $emmaTools.paths.node
 if (!$emmaNode -or ![IO.Path]::IsPathRooted($emmaNode) -or !(Test-Path -LiteralPath $emmaNode -PathType Leaf)) {
     throw 'Configured Node executable is unavailable. Repair this account toolchain before updating.'
 }
-$emmaArgs = @($emmaLauncher, '--root', $emmaRoot, '--version', $Version, '--between-sessions')
+$emmaArgs = @($emmaLauncher, '--root', $emmaRoot, '--between-sessions')
+if ($Version) { $emmaArgs += @('--version', $Version) }
 if ($Preview) { $emmaArgs += '--preview' }
 $emmaStdout = [IO.Path]::GetTempFileName()
 $emmaStderr = [IO.Path]::GetTempFileName()
@@ -45,8 +45,10 @@ if ($emmaExit -ne 0) {
 try { $emmaResult = ($emmaOutput -join [Environment]::NewLine) | ConvertFrom-Json }
 catch { throw 'Updater output could not be verified; installation is not confirmed.' }
 Write-Output ($emmaResult | ConvertTo-Json -Depth 10 -Compress)
-if ($emmaResult.cache_refresh -ne 'verified' -or $emmaResult.installed_version -ne $Version) {
+$emmaExpected = $Version
+if (!$emmaExpected) { $emmaExpected = $emmaResult.version }
+if (!$emmaExpected -or $emmaResult.cache_refresh -ne 'verified' -or $emmaResult.installed_version -ne $emmaExpected) {
     Write-Output 'Update is pending or the expected installed version was not verified. Keep the current settings and inspect the status above.'
     exit 2
 }
-Write-Output "Emma $Version is installed. Start a fresh chat and confirm its loaded version before today's real session."
+Write-Output "Emma $emmaExpected is installed. Start a fresh chat and confirm its loaded version before today's real session."

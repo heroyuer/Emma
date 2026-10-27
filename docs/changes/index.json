@@ -1,6 +1,12 @@
 {
   "changes": [
     {
+      "id": "CR-0004",
+      "revision": 1,
+      "status": "implemented_host_validation_pending",
+      "path": "docs/changes/CR-0004-universal-upgrades.md"
+    },
+    {
       "id": "CR-0003",
       "revision": 1,
       "status": "implemented_host_validation_pending",

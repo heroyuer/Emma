@@ -1,8 +1,8 @@
-# Native Voice acceptance for 0.2.3
+# Native Voice acceptance for 0.2.4
 
 Run this on a fresh parent test chat with the candidate explicitly selected before any child rollout. Use synthetic conversation and the parent-test profile. Do not copy learner records into source control. A local unit test cannot establish these results.
 
-1. Start with Hi Emma. Confirm the actual loaded version is 0.2.3, local session ID exists if execution is available, and host_surface/instruction_loading/transcript_delivery reflect actual observations. Record unavailable capabilities as unknown. Confirm the actual parent instruction revision separately.
+1. Start with Hi Emma. Confirm the actual loaded version is 0.2.4, local session ID exists if execution is available, and host_surface/instruction_loading/transcript_delivery reflect actual observations. Record unavailable capabilities as unknown. Confirm the actual parent instruction revision separately.
 2. Discuss one game decision. After one recast, offer a clear short answer. Emma should follow its meaning rather than demand another full-sentence repeat.
 3. Say What is next? Emma should lead into a fresh idea or activity. A puzzle-design discussion should include useful context and one doable learner contribution.
 4. Pause in the middle of a thought, then finish it. Check the actual audio experience for premature feedback; fragmented text alone cannot establish an interruption.
